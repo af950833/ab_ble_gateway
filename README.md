@@ -25,7 +25,7 @@ iBeacon / Eddystone / BLE MAC을 지원하고, Auto learn · Preload iBeacon · 
 ---
 
 ## 옵션
-
+![AB BLE Gateway](images/ab_ble_gateway.png)
 - **MQTT Topic**: 기본 `ab_ble` 이며 사용자가 변경 가능
 - **Auto learn**: ON 시 수신된 비콘을 자동 등록(기본 OFF)
 - **Idle timeout**: 마지막 수신 이후 N초가 지나면 `not_home` (기본 120초이며 생성되는 device_tracker 의 consider_home 은 0초로 기본 설정됨)
