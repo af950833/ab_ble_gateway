@@ -67,7 +67,7 @@ iBeacon / Eddystone / BLE MAC을 지원하고, Auto learn · Preload iBeacon · 
 ---
 
 ## 엔티티 네이밍
-- iBeacon: `device_tracker.ble_ibc_<uuid32><major4><minor4>`  
+- iBeacon: `device_tracker.ble_ibc_<uuid><major4><minor4>`  
 - Eddystone: `device_tracker.ble_eds_<namespace>`  
 - MAC: `device_tracker.ble_<mac_without_colon>`
 
