@@ -1,0 +1,15 @@
+{
+  "domain": "ab_ble_gateway",
+  "name": "AB BLE Gateway",
+  "version": "1.0.10",
+  "documentation": "https://example.local/ab_ble_gateway",
+  "requirements": [],
+  "dependencies": [
+    "mqtt"
+  ],
+  "codeowners": [
+    "@yourhandle"
+  ],
+  "iot_class": "local_push",
+  "config_flow": true
+}
