@@ -94,4 +94,4 @@ logger:
 
 ## 변경 로그
 - **1.0.0(2025/11/17)**
-  - Initail Release
+  - Initial Release
