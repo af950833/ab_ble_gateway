@@ -33,8 +33,9 @@ iBeacon / Eddystone / BLE MAC을 지원하고, Auto learn · Preload iBeacon · 
   ```
   25bc612c-334d-4618-a1ef-07e58a24e806, 100, 40004
   00112233445566778899AABBCCDDEEFF 10 20
-  ```
+
   or
+  
   25bc612c-334d-4618-a1ef-07e58a24e806, 100, 40004; 00112233445566778899AABBCCDDEEFF 10 20
   ```
   *Major/Minor는 10진 또는 16진(`0x` 접두 허용), 내부에서 4자리 HEX로 정규화*
