@@ -29,7 +29,7 @@ iBeacon / Eddystone / BLE MAC을 지원하고, Auto learn · Preload iBeacon · 
 - **MQTT Topic**: 기본 `ab_ble` 이며 사용자가 변경 가능
 - **Auto learn**: ON 시 수신된 비콘을 자동 등록(기본 OFF)
 - **Idle timeout**: 마지막 수신 이후 N초가 지나면 `not_home` (기본 120초이며 생성되는 device_tracker 의 consider_home 은 0초로 기본 설정됨)
-- **Preload iBeacon** (멀티라인/세미콜론 `;` 가능)
+- **Preload iBeacon** (UUID, Major, Minor 형식으로 입력필요. 멀티라인/세미콜론 `;` 가능)
   ```
   25bc612c-334d-4618-a1ef-07e58a24e806, 100, 40004
   00112233445566778899AABBCCDDEEFF 10 20
@@ -39,7 +39,7 @@ iBeacon / Eddystone / BLE MAC을 지원하고, Auto learn · Preload iBeacon · 
   25bc612c-334d-4618-a1ef-07e58a24e806, 100, 40004; 00112233445566778899AABBCCDDEEFF 10 20
   ```
   *Major/Minor는 10진 또는 16진(`0x` 접두 허용), 내부에서 4자리 HEX로 정규화*
-- **Preload Keys** (완성 키 직접 입력)
+- **Preload Keys** (완성 키 직접 입력. 공백, 줄바꿈, 쉼표로 멀티 입력 가능)
   ```
   IBC_7B439D25D4B3400289CCBBC578111D4E00649C44
   EDS_00112233445566778899
