@@ -45,6 +45,7 @@ iBeacon / Eddystone / BLE MAC을 지원하고, Auto learn · Preload iBeacon · 
   EDS_00112233445566778899
   AA:BB:CC:DD:EE:FF
   ```
+- **Preload iBeacon & Preload Keys 는 수동으로 계속 추가 가능**
 
 ---
 
