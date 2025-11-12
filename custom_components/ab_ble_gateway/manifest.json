@@ -1,14 +1,14 @@
 {
   "domain": "ab_ble_gateway",
   "name": "AB BLE Gateway",
-  "version": "1.0.10",
-  "documentation": "https://example.local/ab_ble_gateway",
+  "version": "1.0.0",
+  "documentation": "https://github.com/af950833/ab_ble_gateway",
   "requirements": [],
   "dependencies": [
     "mqtt"
   ],
   "codeowners": [
-    "@yourhandle"
+    "@af950833"
   ],
   "iot_class": "local_push",
   "config_flow": true
