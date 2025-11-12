@@ -3,8 +3,7 @@
 MQTT 기반 BLE 스캐너 데이터를 Home Assistant의 `device_tracker`로 변환해 재실 상태를 추적하는 통합입니다.  
 iBeacon / Eddystone / BLE MAC을 지원하고, Auto learn · Preload iBeacon · Preload Keys로 관리할 수 있습니다.
 
-> ✅ HA 2025.11 / Python 3.13 호환  
-> ✅ 상태 계산: `is_connected` + 명시적 `state`(home/not_home)  
+> ✅ HA 2025.11 / Python 3.13 에서 검증됨  
 > ✅ 속성: `rssi`, `last_seen_seconds`, `uuid/major/minor`(iBeacon)
 
 ---
