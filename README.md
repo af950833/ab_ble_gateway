@@ -16,6 +16,7 @@ iBeacon / Eddystone / BLE MAC을 지원하고, Auto learn · Preload iBeacon · 
 3. HACS에서 `AB BLE Gateway` 검색 → Install
 4. Home Assistant 재시작
 5. 설정 → 기기 및 서비스 → 통합 추가 → `AB BLE Gateway`
+![HACS](images/hacs.png)
 
 ### 2) 수동 설치
 1. 이 저장소를 내려받아 `custom_components/ab_ble_gateway/`를
