@@ -32,7 +32,7 @@ iBeacon / Eddystone / BLE MAC을 지원하고, Auto learn · Preload iBeacon · 
 - **Idle timeout**: 마지막 수신 이후 N초가 지나면 `not_home` (기본 120)
 - **Preload iBeacon** (멀티라인/세미콜론 `;` 가능)
   ```
-  25bc612c-334d-4618-a1ef-07e58a24e806, 100, 0x9C44
+  25bc612c-334d-4618-a1ef-07e58a24e806, 100, 40004
   00112233445566778899AABBCCDDEEFF 10 20
   ```
   *Major/Minor는 10진 또는 16진(`0x` 접두 허용), 내부에서 4자리 HEX로 정규화*
@@ -57,7 +57,7 @@ iBeacon / Eddystone / BLE MAC을 지원하고, Auto learn · Preload iBeacon · 
 }
 ```
 - iBeacon 헤더: `1AFF4C000215`
-- 키 조합: `UUID(32)+Major(4)+Minor(4)` → `IBC_<uuid><major><minor>` (TX파워 제외)
+- 키 조합: `UUID(32)+Major(4)+Minor(4)` → `IBC_<uuid><major><minor>` (마지막C5 부분은 TX파워로 제외됨)
 
 ---
 
@@ -88,7 +88,5 @@ logger:
 ---
 
 ## 변경 로그
-- **1.0.10**
-  - 상태를 명시적으로 `home/not_home`으로 계산 (unknown 이슈 해결)
-  - iBeacon 파서 보정: UUID32 + Major4 + Minor4 (TX 파워 제외)
-  - 옵션 검사/멀티라인 입력/세미콜론 구분 지원
+- **1.0.0(2025/11/17)**
+  - Initail Release
