@@ -6,6 +6,7 @@ CONF_IDLE_TIMEOUT = "idle_timeout"  # seconds
 DEFAULT_IDLE_TIMEOUT = 120
 CONF_PRELOAD_KEYS = "preload_keys"
 CONF_PRELOAD_IBEACON = "preload_ibeacon"
+CONF_PRELOAD_IRK = "preload_irk"
 
 BLE_PREFIX = "BLE_"
 EDS_HEADER = "AAFE1516AAFE"

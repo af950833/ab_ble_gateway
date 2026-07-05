@@ -14,7 +14,9 @@ from .const import (
     DEFAULT_IDLE_TIMEOUT,
     CONF_PRELOAD_KEYS,
     CONF_PRELOAD_IBEACON,
+    CONF_PRELOAD_IRK,
 )
+from .mqtt_client import parse_irk_value
 
 HEX_RE = re.compile(r"^[0-9A-F]{1,4}$", re.I)
 
@@ -64,6 +66,23 @@ def _validate_preload_ibeacon(text: str) -> tuple[bool, str | None]:
     except Exception as e:
         return False, str(e)
 
+def _validate_preload_irk(text: str) -> tuple[bool, str | None]:
+    if not text:
+        return True, None
+    for idx, raw in enumerate(_split_rows(text), start=1):
+        line = raw.strip()
+        if not line:
+            continue
+        parts = line.replace(',', ' ').split()
+        if not any(parse_irk_value(part) for part in parts):
+            return False, f"Line {idx}: expected a 32 hex or base64 IRK"
+        for part in parts:
+            if re.fullmatch(r"-?\d+", part):
+                rssi = int(part)
+                if not (-100 <= rssi <= 0):
+                    return False, f"Line {idx}: RSSI threshold must be between -100 and 0"
+    return True, None
+
 class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 1
 
@@ -73,6 +92,9 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             ok, msg = _validate_preload_ibeacon(user_input.get(CONF_PRELOAD_IBEACON, ""))
             if not ok:
                 errors[CONF_PRELOAD_IBEACON] = msg or "invalid_preload"
+            ok, msg = _validate_preload_irk(user_input.get(CONF_PRELOAD_IRK, ""))
+            if not ok:
+                errors[CONF_PRELOAD_IRK] = msg or "invalid_preload"
             if not errors:
                 await self.async_set_unique_id(DOMAIN)
                 self._abort_if_unique_id_configured()
@@ -86,6 +108,8 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             vol.Optional(CONF_IDLE_TIMEOUT, default=DEFAULT_IDLE_TIMEOUT):
                 selector.NumberSelector(selector.NumberSelectorConfig(min=0, mode=selector.NumberSelectorMode.BOX)),
             vol.Optional(CONF_PRELOAD_IBEACON, default=""):
+                selector.TextSelector(selector.TextSelectorConfig(multiline=True)),
+            vol.Optional(CONF_PRELOAD_IRK, default=""):
                 selector.TextSelector(selector.TextSelectorConfig(multiline=True)),
             vol.Optional(CONF_PRELOAD_KEYS, default=""):
                 selector.TextSelector(selector.TextSelectorConfig(multiline=True)),
@@ -112,6 +136,9 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
             ok, msg = _validate_preload_ibeacon(user_input.get(CONF_PRELOAD_IBEACON, ""))
             if not ok:
                 errors[CONF_PRELOAD_IBEACON] = msg or "invalid_preload"
+            ok, msg = _validate_preload_irk(user_input.get(CONF_PRELOAD_IRK, ""))
+            if not ok:
+                errors[CONF_PRELOAD_IRK] = msg or "invalid_preload"
             if not errors:
                 return self.async_create_entry(title="Options", data=user_input)
 
@@ -121,6 +148,8 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
             vol.Optional(CONF_IDLE_TIMEOUT, default=get(CONF_IDLE_TIMEOUT, DEFAULT_IDLE_TIMEOUT)):
                 selector.NumberSelector(selector.NumberSelectorConfig(min=0, mode=selector.NumberSelectorMode.BOX)),
             vol.Optional(CONF_PRELOAD_IBEACON, default=get(CONF_PRELOAD_IBEACON, "")):
+                selector.TextSelector(selector.TextSelectorConfig(multiline=True)),
+            vol.Optional(CONF_PRELOAD_IRK, default=get(CONF_PRELOAD_IRK, "")):
                 selector.TextSelector(selector.TextSelectorConfig(multiline=True)),
             vol.Optional(CONF_PRELOAD_KEYS, default=get(CONF_PRELOAD_KEYS, "")):
                 selector.TextSelector(selector.TextSelectorConfig(multiline=True)),
