@@ -32,7 +32,7 @@ iBeacon / Eddystone / BLE MAC / IRK 기반 Private BLE Device를 지원하고, A
 
 ## 옵션
 
-![AB BLE Gateway](images/ab_ble_gateway.png)
+![AB BLE Gateway](images/ab_ble_gateway2.png)
 
 - **MQTT Topic**: 기본 `ab_ble`이며 사용자가 변경 가능
 - **Auto learn**: ON 시 수신된 비콘/기기를 자동 등록 (기본 OFF)
